@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property List</title>
+</head>
+<body>
+    <h2>Property Listings</h2>
+    <ul>
+        {% for property in properties %}
+            <li>
+                <h5>{{ property.address }}</h5>
+                <p>Price: ${{ property.price }}</p>
+                <p>Location: {{ property.location }}</p>
+                <p>Type: {{ property.property_type }}</p>
+                <a href="{% url 'property_edit' property.pk %}">Edit</a>
+                <a href="{% url 'property_delete' property.pk %}">Delete</a>
+            </li>
+        {% empty %}
+            <li>No properties found.</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'property-add' %}">Add New Property</a>
+</body>
+</html>
